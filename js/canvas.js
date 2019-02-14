@@ -21,8 +21,8 @@ function autoSetCanvasSize(canvas) {
   function resize() {
     var pageWidth = document.documentElement.clientWidth
     var pageHeight = document.documentElement.clientHeight
-    canvas.width = pageWidth * .9
-    canvas.height = pageHeight * .9
+    canvas.width = pageWidth
+    canvas.height = pageHeight
   }
 }
 function drawSpot(x, y, radius) {
@@ -44,31 +44,65 @@ function listenToMouse(canvas) {
   var using = false
   var lastPoint = { x: undefined, y: undefined }
 
-  canvas.onmousedown = function (e) {
-    var x = e.clientX
-    var y = e.clientY
-    using = true
-    if (eraserOn) {
-      context.clearRect(x, y, 10, 10)
-    } else {
-      drawSpot(x, y, 3)
-      lastPoint = { x: x, y: y }
+  if (document.body.ontouchstart !== undefined) {
+    //触屏设备
+    canvas.ontouchstart = function (e) {
+      var x = e.touches[0].clientX
+      var y = e.touches[0].clientY
+      using = true
+      if (eraserOn) {
+        context.clearRect(x, y, 10, 10)
+      } else {
+        drawSpot(x, y, 3)
+        lastPoint = { x: x, y: y }
+      }
+    }
+    canvas.ontouchmove = function (e) {
+      var x = e.touches[0].clientX
+      var y = e.touches[0].clientY
+      if (!using) { return }
+      if (eraserOn) {
+        context.clearRect(x, y, 10, 10)
+      } else {
+        var newPoint = { x: x, y: y }
+        drawSpot(x, y, 3)
+        drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+        lastPoint = newPoint
+      }
+    }
+    canvas.ontouchend = function (e) {
+      using = false
+    }
+  } else {
+    //非触屏设备
+    canvas.onmousedown = function (e) {
+      var x = e.clientX
+      var y = e.clientY
+      using = true
+      if (eraserOn) {
+        context.clearRect(x, y, 10, 10)
+      } else {
+        drawSpot(x, y, 3)
+        lastPoint = { x: x, y: y }
+      }
+    }
+    canvas.onmousemove = function (e) {
+      var x = e.clientX
+      var y = e.clientY
+      if (!using) { return }
+      if (eraserOn) {
+        context.clearRect(x, y, 10, 10)
+      } else {
+        var newPoint = { x: x, y: y }
+        drawSpot(x, y, 3)
+        drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+        lastPoint = newPoint
+      }
+    }
+    canvas.onmouseup = function (e) {
+      using = false
     }
   }
-  canvas.onmousemove = function (e) {
-    var x = e.clientX
-    var y = e.clientY
-    if (!using) { return }
-    if (eraserOn) {
-      context.clearRect(x, y, 10, 10)
-    } else {
-      var newPoint = { x: x, y: y }
-      drawSpot(x, y, 3)
-      drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
-      lastPoint = newPoint
-    }
-  }
-  canvas.onmouseup = function (e) {
-    using = false
-  }
+
 }
+
