@@ -12,20 +12,13 @@ body {
 }
 #actions {
   position: fixed;
-  bottom: 5px;
+  top: 5px;
   left: 5px;
 }
-.actions > #brush {
-  display: none;
-}
-.actions > #eraser {
-  display: inline-block;
-}
-.actions.x > #brush {
-  display: inline-block;
-}
-.actions.x > #eraser {
-  display: none;
+
+#actions svg {
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .icon {

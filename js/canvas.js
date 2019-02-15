@@ -3,16 +3,14 @@ var context = canvas.getContext("2d")
 var eraser = document.getElementById("eraser")
 
 autoSetCanvasSize(canvas)
-listenToMouse(canvas)
+listenToUser(canvas)
 
 var eraserOn = false
+pen.onclick = function () {
+  eraserOn = false
+}
 eraser.onclick = function () {
   eraserOn = true
-  actions.className = "actions x"
-}
-brush.onclick = function () {
-  eraserOn = false
-  actions.className = "actions"
 }
 /**********/
 function autoSetCanvasSize(canvas) {
@@ -40,7 +38,7 @@ function drawLine(x1, y1, x2, y2) {
 }
 
 /*********/
-function listenToMouse(canvas) {
+function listenToUser(canvas) {
   var using = false
   var lastPoint = { x: undefined, y: undefined }
 
