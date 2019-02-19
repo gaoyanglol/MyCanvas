@@ -19,8 +19,8 @@ function autoSetCanvasSize(canvas) {
   function resize() {
     var pageWidth = document.documentElement.clientWidth
     var pageHeight = document.documentElement.clientHeight
-    canvas.width = pageWidth
-    canvas.height = pageHeight
+    canvas.width = pageWidth*0.9
+    canvas.height = pageHeight*0.9
   }
 }
 function drawSpot(x, y, radius) {
