@@ -6,25 +6,59 @@ html, body {
 }
 body {
   margin: 0;
+  overflow: hidden;
 }
 #canvas {
-  background: #eee
+  background: #eee;
 }
 #actions {
   position: fixed;
   top: 5px;
-  left: 5px;
+  left: 20px;
 }
 
 #actions svg {
   width: 1.5em;
   height: 1.5em;
+  transition: all .3s ease;
 }
-
+#actions svg.active {
+  fill: red;
+  transform: scale(1.2)
+}
 .icon {
   width: 1em; 
   height: 1em;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+}
+.colors {
+  position: fixed;
+  top: 40px;
+  left: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none 
+}
+.colors li {
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .25);
+  border-radius: 50%;
+  margin: 10px 0;
+  transition: all .3s ease;
+}
+.colors li.red {
+  background:red;
+}
+.colors li.green {
+  background:green;
+}
+.colors li.blue {
+  background:blue;
+}
+.colors li.active {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .45);
+  transform: scale(1.2)
 }

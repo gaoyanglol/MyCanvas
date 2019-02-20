@@ -13,14 +13,18 @@
 <body>
   <canvas id="canvas"></canvas>
   <div id="actions" class="actions">
-    <svg id="pen" class="icon">
+    <svg id="pen" class="icon active">
       <use xlink:href="#icon-pen"></use>
     </svg>
     <svg id="eraser" class="icon">
       <use xlink:href="#icon-eraser"></use>
     </svg>
   </div>
-
+  <ul class="colors">
+    <li id="red" class="red"></li>
+    <li id="green" class="green"></li>
+    <li id="blue" class="blue"></li>
+  </ul>
   <script src="./js/canvas.js"></script>
 </body>
 

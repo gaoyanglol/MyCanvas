@@ -8,9 +8,35 @@ listenToUser(canvas)
 var eraserOn = false
 pen.onclick = function () {
   eraserOn = false
+  pen.classList.add("active")
+  eraser.classList.remove("active")
 }
 eraser.onclick = function () {
   eraserOn = true
+  eraser.classList.add("active")
+  pen.classList.remove("active")
+}
+
+red.onclick = function() {
+  context.fillStyle = "red"
+  context.strokeStyle = "red"
+  red.classList.add("active")
+  blue.classList.remove("active")
+  green.classList.remove("active")
+}
+green.onclick = function() {
+  context.fillStyle = "green"
+  context.strokeStyle = "green"
+  red.classList.remove("active")
+  blue.classList.remove("active")
+  green.classList.add("active")
+}
+blue.onclick = function() {
+  context.fillStyle = "blue"
+  context.strokeStyle = "blue"
+  red.classList.remove("active")
+  blue.classList.add("active")
+  green.classList.remove("active")
 }
 /**********/
 function autoSetCanvasSize(canvas) {
