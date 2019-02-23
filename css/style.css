@@ -62,3 +62,16 @@ body {
   box-shadow: 2px 2px 4px rgba(0, 0, 0, .45);
   transform: scale(1.2)
 }
+.sizes {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sizes > .thin {
+  height: 0;
+  width: 50px;
+  border: 1px solid black;
+}
