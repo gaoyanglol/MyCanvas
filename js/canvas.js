@@ -1,6 +1,8 @@
 var canvas = document.getElementById("canvas")
 var context = canvas.getContext("2d")
 var eraser = document.getElementById("eraser")
+var lineWidth = 5
+var spotRadius = 2.5
 
 autoSetCanvasSize(canvas)
 listenToUser(canvas)
@@ -38,6 +40,25 @@ blue.onclick = function() {
   blue.classList.add("active")
   green.classList.remove("active")
 }
+thin.onclick = function() {
+  lineWidth = 5
+  spotRadius = 2.5
+}
+thick.onclick = function() {
+  lineWidth = 10
+  spotRadius = 5
+}
+clear.onclick = function() {
+  context.clearRect(0, 0, canvas.width, canvas.height)
+}
+download.onclick = function() {
+  var url = canvas.toDataURL("image/png")
+  var a = document.createElement('a')
+  a.href = url
+  a.download = 'xxx'
+  a.target = "_blank"
+  a.click()
+}
 /**********/
 function autoSetCanvasSize(canvas) {
   resize()
@@ -57,7 +78,7 @@ function drawSpot(x, y, radius) {
 }
 function drawLine(x1, y1, x2, y2) {
   context.beginPath()
-  context.lineWidth = 6
+  context.lineWidth = lineWidth
   context.moveTo(x1, y1)
   context.lineTo(x2, y2)
   context.stroke()
@@ -77,7 +98,7 @@ function listenToUser(canvas) {
       if (eraserOn) {
         context.clearRect(x, y, 10, 10)
       } else {
-        drawSpot(x, y, 3)
+        drawSpot(x, y, spotRadius)
         lastPoint = { x: x, y: y }
       }
     }
@@ -89,7 +110,7 @@ function listenToUser(canvas) {
         context.clearRect(x, y, 10, 10)
       } else {
         var newPoint = { x: x, y: y }
-        drawSpot(x, y, 3)
+        drawSpot(x, y, spotRadius)
         drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
         lastPoint = newPoint
       }
@@ -106,7 +127,7 @@ function listenToUser(canvas) {
       if (eraserOn) {
         context.clearRect(x, y, 10, 10)
       } else {
-        drawSpot(x, y, 3)
+        drawSpot(x, y, spotRadius)
         lastPoint = { x: x, y: y }
       }
     }
@@ -118,7 +139,7 @@ function listenToUser(canvas) {
         context.clearRect(x, y, 10, 10)
       } else {
         var newPoint = { x: x, y: y }
-        drawSpot(x, y, 3)
+        drawSpot(x, y, spotRadius)
         drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
         lastPoint = newPoint
       }

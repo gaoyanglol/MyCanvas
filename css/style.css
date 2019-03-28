@@ -32,10 +32,12 @@ body {
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+  margin: 5px 10px;
+  cursor: pointer;
 }
 .colors {
   position: fixed;
-  top: 40px;
+  top: 50px;
   left: 20px;
   margin: 0;
   padding: 0;
@@ -64,14 +66,25 @@ body {
 }
 .sizes {
   position: absolute;
-  top: 40px;
+  top: 10px;
   right: 20px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.sizes > .thin {
-  height: 0;
-  width: 50px;
-  border: 1px solid black;
+.sizes li {
+  margin: 10px;
+  cursor: pointer;
+}
+.sizes > #thin {
+  height: 4px;
+  width: 30px;
+  border-radius: 2px;
+  background: #000
+}
+.sizes > #thick {
+  height: 8px;
+  width: 30px;
+  border-radius: 4px;
+  background: #000
 }
