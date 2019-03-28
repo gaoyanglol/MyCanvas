@@ -68,7 +68,7 @@ body {
   transform: scale(1.2)
 }
 .sizes {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 20px;
   list-style: none;
